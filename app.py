@@ -10,7 +10,7 @@ LOCATION = "asia-southeast1"
 vertexai.init(project=PROJECT_ID, location=LOCATION)
 
 def create_session():
-    chat_model = ChatModel.from_pretrained("text-bison@002")
+    chat_model = ChatModel.from_pretrained("chat-bison@002")
     chat = chat_model.start_chat()
     return chat
 
