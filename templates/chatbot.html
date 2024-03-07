@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sample Vertex AI Gen AI Chat</title>
+  <title>Vertex AI DialogFlow Chat with custom data source</title>
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
 
@@ -23,9 +25,9 @@
       background-color: #fff;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      width: 70%;
+      width: 80%;
       max-width: 600px;
-      overflow: hidden;
+      /*overflow: hidden;*/
     }
 
     .header {
@@ -77,63 +79,40 @@
       overflow-wrap: break-word;
       margin: 0 20px 20px;
     }
+    df-messenger {
+      z-index: 999; 
+      bottom: 0;
+      right: 0;
+      top: 0;
+      width: 350px;
+    }
+    .fixedHeight{
+      height: 450px;
+    }
     .headlingLink{
       text-align: right;
       padding: 10px 10px 50px 10px;
-    }
-   
+    } 
   </style>
 </head>
 <body>
-  <div>
 
-  </div>
-  <div class="chat-container">
+  <div class="chat-container fixedHeight">
     <div class="headlingLink">
-      <a  href="/chatbot">DialogFlow Chat Custom Data</a>
+      <a  href="/">GenAI Query Chat</a>
     </div>
-    <h1 class="header">Vertex AI Gen AI Chat</h1>
-    <form class="chat-form" id="chat-form">
-      <br></br>
-      <br></br>
-      <br></br>
-
-      <input
-        type="text"
-        id="user-input"
-        name="user_input"
-        placeholder="Your query..."
-      />
-      <button type="submit" id="submitBtn">Send</button>
-    </form>
-    <div id="result"></div>
-  </div>
-
+    <h1 class="header">DialogFlow Chat Custom Data</h1>
+    
+    <df-messenger
+    project-id="mygenaiproject-416315"
+    agent-id="ff865e17-ac5e-4317-a87e-688d8acad6d0"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat
+    chat-title="pdfsearchbot">
+    </df-messenger-chat>
+  </df-messenger>
+</div>
   
-
-  <script>
-    window.onload = function () {
-      document
-        .getElementById("chat-form")
-        .addEventListener("submit", function (event) {
-          // Prevent the form from submitting and refreshing the page
-          event.preventDefault();
-
-          let userInput = document.getElementById("user-input").value;
-          let url = `/palm2?user_input=${encodeURIComponent(userInput)}`;
-
-          fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-              let content = data.content;
-              let resultDiv = document.getElementById("result");
-              resultDiv.innerHTML = content;
-            })
-            .catch((error) => {
-              console.error("Error fetching PaLM response:", error);
-            });
-        });
-    };
-  </script>
 </body>
 </html>

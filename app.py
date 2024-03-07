@@ -28,6 +28,10 @@ def response(chat, message):
 def index():
     return render_template('index.html')
 
+@app.route('/chatbot')
+def chatbot():
+    return render_template('chatbot.html')
+
 @app.route('/palm2', methods=['GET', 'POST'])
 def vertex_palm():
     user_input = ""

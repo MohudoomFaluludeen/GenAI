@@ -22,7 +22,13 @@ def response(chat, message):
     result = chat.send_message(message, **parameters)
     return result.text
 
+def s(*a):
+    print(len(a))
+
+
 def run_chat():
+    s(12,24,232)
+    
     chat_model = create_session()
     print(f"Chat Session created")
     
