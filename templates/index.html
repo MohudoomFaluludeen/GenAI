@@ -91,6 +91,8 @@
   <div class="chat-container">
     <div class="headlingLink">
       <a  href="/chatbot">DialogFlow Chat Custom Data</a>
+      <br/>
+      <a  href="/chatbotTunedModel">Query Custom Tuned Data</a>
     </div>
     <h1 class="header">Vertex AI Gen AI Chat</h1>
     <form class="chat-form" id="chat-form">
@@ -118,6 +120,7 @@
         .addEventListener("submit", function (event) {
           // Prevent the form from submitting and refreshing the page
           event.preventDefault();
+          document.getElementById("result").innerHTML="";
 
           let userInput = document.getElementById("user-input").value;
           let url = `/palm2?user_input=${encodeURIComponent(userInput)}`;
